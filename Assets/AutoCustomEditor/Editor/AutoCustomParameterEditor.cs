@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEditor;
 using UnityEditorInternal;
 using UnityEngine;
@@ -19,6 +20,8 @@ namespace AutoCustomEditor
 
         private SerializedProperty[] _properties;
         private ReorderableList _itemList;
+        private string[] _targetPropertyNames;
+        private int[] _selectPropertyIndexs;
 
         private void OnEnable()
         {
@@ -38,9 +41,18 @@ namespace AutoCustomEditor
 
         public override void OnInspectorGUI()
         {
+        }
+
+        public void DrawInspector()
+        {
             serializedObject.Update();
             _itemList.DoLayoutList();
             serializedObject.ApplyModifiedProperties();
+        }
+
+        public void SetTargetNames(string[] names)
+        {
+            _targetPropertyNames = names;
         }
 
         private float GetItemHeight(int index)
@@ -51,7 +63,7 @@ namespace AutoCustomEditor
 
         private void DrawItem(Rect rect, int index, bool isActive, bool isFocused)
         {
-            Utility.DrawItem(rect, GetItemFromIndex(index));
+            Utility.DrawItem(rect, GetItemFromIndex(index), _targetPropertyNames);
         }
 
         private SerializedProperty GetItemFromIndex(int index)

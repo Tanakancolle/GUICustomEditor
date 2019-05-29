@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using Boo.Lang;
 using UnityEditor;
 using UnityEngine;
@@ -9,18 +10,46 @@ namespace AutoCustomEditor
     {
         protected List<ItemDrawerBase> _drwaerList = new List<ItemDrawerBase>();
 
+        protected AutoCustomParameter _parameter;
+        protected AutoCustomParameterEditor _parameterEditor;
+        protected bool _isFoldout;
+
         protected virtual void OnEnable()
         {
-            var assetName = target.GetType().Name + "Parameter";
-            var parameter = GetParameter(assetName);
-            if (parameter == null)
+            Refresh();
+        }
+
+        protected virtual void Refresh()
+        {
+            if (_parameter == null)
             {
-                Debug.LogError("AutoCustomParameterを継承したScriptableObjectがありません : " + assetName);
+                var assetName = GetParameterName();
+                _parameter = GetParameter(assetName);
+                if (_parameter == null)
+                {
+                    return;
+                }
+
+                _parameterEditor = Editor.CreateEditor(_parameter) as AutoCustomParameterEditor;
+
+                var proprtyNameList = new List<string>();
+                var property = new SerializedObject(target).GetIterator();
+
+                while (property.NextVisible(true))
+                {
+                    proprtyNameList.Add(property.name);
+                }
+
+                _parameterEditor.SetTargetNames(proprtyNameList.ToArray());
+            }
+
+            if (_parameter.Items == null)
+            {
                 return;
             }
 
             _drwaerList.Clear();
-            foreach (var item in parameter.Items)
+            foreach (var item in _parameter.Items)
             {
                 var drawer = ItemDrawerCreator.Create(item, serializedObject);
                 if (drawer == null)
@@ -38,6 +67,51 @@ namespace AutoCustomEditor
             {
                 drawer.Draw();
             }
+
+            GUILayout.Space(EditorGUIUtility.singleLineHeight);
+            Utility.DrawSeparator();
+
+            if (_parameter == null)
+            {
+                if (GUILayout.Button("Create Parameter"))
+                {
+                    var path = AssetDatabase.GetAssetPath(target);
+                    path = Path.GetDirectoryName(path);
+
+                    if (path.Contains("/Editor/") == false)
+                    {
+                        path = Path.Combine(path, "Editor");
+                    }
+
+                    var instance = CreateInstance<AutoCustomParameter>();
+                    AssetDatabase.CreateAsset(instance, Path.Combine(path, GetParameterName()) + ".asset");
+                    AssetDatabase.Refresh();
+                    Refresh();
+                }
+
+                return;
+            }
+
+            _isFoldout = EditorGUILayout.Foldout(_isFoldout, "Custom Editor Parameter");
+
+            if (_isFoldout == false)
+            {
+                return;
+            }
+
+            if (_parameterEditor != null)
+            {
+                EditorGUI.BeginChangeCheck();
+                _parameterEditor.DrawInspector();
+                if (EditorGUI.EndChangeCheck())
+                {
+                    Refresh();
+                }
+            }
+            else
+            {
+                EditorGUILayout.LabelField("Parameter Not Found");
+            }
         }
 
         private AutoCustomParameter GetParameter(string assetName)
@@ -52,6 +126,11 @@ namespace AutoCustomEditor
             }
 
             return null;
+        }
+
+        private string GetParameterName()
+        {
+            return target.GetType().Name + "Parameter";
         }
     }
 }
