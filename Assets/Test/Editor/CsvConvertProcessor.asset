@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c738011020bba4f779f9a72407afd96e, type: 3}
-  m_Name: Test
+  m_Script: {fileID: 11500000, guid: 3cd1c1456f1194671a597560755377b5, type: 3}
+  m_Name: CsvConvertProcessor
   m_EditorClassIdentifier: 
-  _intValue: 0
+  _targetTextAsset: {fileID: 4900000, guid: 2101b758c93a549408dce1c0ebc36cf8, type: 3}

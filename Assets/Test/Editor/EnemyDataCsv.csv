@@ -1,0 +1,6 @@
+変数名,タイプ,説明
+Name,string,モンスター名
+HP,int,生命力
+Attack,float,攻撃力
+Texture,Texture,画像
+Description,string,説明

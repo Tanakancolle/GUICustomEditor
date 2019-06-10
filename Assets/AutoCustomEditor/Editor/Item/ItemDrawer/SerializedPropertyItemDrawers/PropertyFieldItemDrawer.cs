@@ -8,7 +8,7 @@ namespace AutoCustomEditor
         {
         }
 
-        public override void Draw()
+        public override void Draw(AutoCustomEditorState state)
         {
             if (_property == null)
             {

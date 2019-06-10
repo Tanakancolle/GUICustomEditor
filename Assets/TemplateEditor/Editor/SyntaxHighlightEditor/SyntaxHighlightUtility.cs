@@ -16,12 +16,13 @@ namespace SyntaxHighlightEditor
         /// <summary>
         /// C#のコードエリアを表示
         /// </summary>
-        public static string DrawCSharpCode(ref Vector2 scrollPos, string code, int flontSize = DefaultFontSize)
+        public static string DrawCSharpCode(ref Vector2 scrollPos, string code, int flontSize = DefaultFontSize, float height = -1f)
         {
             string editedCode;
 
             // TODO : Cache ?
-            scrollPos = EditorGUILayout.BeginScrollView(scrollPos, GUILayout.MinHeight(MinHeight), GUILayout.MaxHeight(MaxHeight));
+            var maxHeight = height <= 0f ? Screen.height : height;
+            scrollPos = EditorGUILayout.BeginScrollView(scrollPos, GUILayout.MaxHeight(maxHeight));
             {
                 // TODO : Cache ?
                 var style = new GUIStyle(GUI.skin.textArea);

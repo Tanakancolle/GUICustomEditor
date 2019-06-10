@@ -12,7 +12,7 @@ namespace AutoCustomEditor
             _labelContent = GetGUIContent(parameter.DrawName);
         }
 
-        public override void Draw()
+        public override void Draw(AutoCustomEditorState state)
         {
             EditorGUILayout.LabelField(_labelContent);
         }

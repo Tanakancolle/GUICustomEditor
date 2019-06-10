@@ -9,11 +9,10 @@ namespace AutoCustomEditor
         {
         }
 
-        public abstract void Draw();
+        public abstract void Draw(AutoCustomEditorState state);
 
         protected virtual GUIContent GetGUIContent(string draw)
         {
-
             return new GUIContent(draw);
         }
 

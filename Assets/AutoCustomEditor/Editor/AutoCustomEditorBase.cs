@@ -1,6 +1,5 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using System.IO;
-using Boo.Lang;
 using UnityEditor;
 using UnityEngine;
 
@@ -63,10 +62,24 @@ namespace AutoCustomEditor
 
         public override void OnInspectorGUI()
         {
+            var state = new AutoCustomEditorState();
+            serializedObject.Update();
             foreach (var drawer in _drwaerList)
             {
-                drawer.Draw();
+                drawer.Draw(state);
             }
+            serializedObject.ApplyModifiedProperties();
+
+            EditorGUI.indentLevel -= state.IntentLevel;
+            for (int i = state.HorizontalLevel; i > 0; --i)
+            {
+                EditorGUILayout.EndHorizontal();
+            }
+            for (int i = state.VerticalLevel; i > 0; --i)
+            {
+                EditorGUILayout.EndVertical();
+            }
+
 
             GUILayout.Space(EditorGUIUtility.singleLineHeight);
             Utility.DrawSeparator();
@@ -78,7 +91,7 @@ namespace AutoCustomEditor
                     var path = AssetDatabase.GetAssetPath(target);
                     path = Path.GetDirectoryName(path);
 
-                    if (path.Contains("/Editor/") == false)
+                    if (path.Contains("/Editor") == false)
                     {
                         path = Path.Combine(path, "Editor");
                     }
