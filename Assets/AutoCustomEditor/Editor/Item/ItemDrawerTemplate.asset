@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56a3a9f3b9043415681fb03d3faa50c2, type: 3}
   m_Name: ItemDrawerTemplate
   m_EditorClassIdentifier: 
-  Path: 
-  ScriptName: '{<Name>}.cs'
-  Code: "using UnityEditor;\n\nnamespace AutoCustomEditor\n{\n    public class {<Name>}
+  Path: Assets/AutoCustomEditor/Editor/Item/ItemDrawer
+  ScriptName: '{<Name>}ItemDrawer.cs'
+  Code: "using UnityEditor;\n\nnamespace AutoCustomEditor\n{\n    public class {<Name>}ItemDrawer
     : ItemDrawerBase\n    {\n        public {<Name>}(ItemParameter parameter, SerializedObject
     target) : base(parameter, target)\n        {\n        }\n\n        public override
     void Draw()\n        {\n        }\n    }\n}\n"

@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56a3a9f3b9043415681fb03d3faa50c2, type: 3}
   m_Name: ScritptableObjectSetting
   m_EditorClassIdentifier: 
-  Path: 
+  Path: Assets/Test/EnemyData
   ScriptName: '{<Name>}.cs'
   Code: "using UnityEngine;\n\n[CreateAssetMenu]\npublic class {<Name>} : ScriptableObject\n{\n{<Repeat:\n   
     /// <summary>\n    /// {2}\n    /// </summary>\n    [SerializeField]\n    private
     {1} {0};\n:Rows>}\n}"
-  Overwrite: 0
+  Overwrite: 1
   Chain:
   - {fileID: 11400000, guid: 453c3fc9571fb4247ad6f27ad56c2ee4, type: 2}
   DuplicatePrefab: {fileID: 0}

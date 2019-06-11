@@ -12,4 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69d1d1c8608a45c8aab3dd7301bcf96f, type: 3}
   m_Name: EnemyDataParameter
   m_EditorClassIdentifier: 
-  Items: []
+  Items:
+  - ItemType: 1
+    PropertyName: 
+    DrawName: 
+    Ints: 
+    Floats: []

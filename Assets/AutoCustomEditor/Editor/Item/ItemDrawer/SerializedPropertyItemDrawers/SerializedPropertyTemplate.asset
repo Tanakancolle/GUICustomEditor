@@ -17,7 +17,7 @@ MonoBehaviour:
   Code: "using UnityEditor;\n\nnamespace AutoCustomEditor\n{\n    public class {<Name>}
     : SerializedPropertyItemDrawerBase\n    {\n        public {<Name>}(ItemParameter
     parameter, SerializedObject target) : base(parameter, target)\n        {\n       
-    }\n\n        public override void Draw()\n        {\n            if (_property
+    }\n\n       public override void Draw()\n        {\n            if (_property
     == null)\n           {\n                return;\n            }\n        }\n   
     }\n}\n"
   Overwrite: 0

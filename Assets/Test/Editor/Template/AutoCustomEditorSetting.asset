@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56a3a9f3b9043415681fb03d3faa50c2, type: 3}
   m_Name: AutoCustomEditorSetting
   m_EditorClassIdentifier: 
-  Path: 
+  Path: Assets/Test/EnemyData/Editor
   ScriptName: '{<Name>}Editor.cs'
   Code: 'using AutoCustomEditor;
 
