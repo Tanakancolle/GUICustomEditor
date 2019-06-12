@@ -40,7 +40,7 @@ namespace AutoCustomEditor
                 case ItemType.VerticalStart:
                 case ItemType.VerticalEnd:
                     return SingleLineTotalHeight;
-                case ItemType.CodeTextArea:
+                case ItemType.CodeField:
                     return SingleLineTotalHeight * 4;
                 case ItemType.Slider:
                     return SingleLineTotalHeight * 3;
@@ -83,7 +83,7 @@ namespace AutoCustomEditor
                     InsertPropertyArrayIndexIfNeeded(intentLevelProperty, 0);
                     EditorGUI.IntSlider(rect, intentLevelProperty.GetArrayElementAtIndex(0), -10, 10, "Intent Level");
                     break;
-                case ItemType.CodeTextArea:
+                case ItemType.CodeField:
                     var startX = rect.x;
                     var startWidth = rect.width;
                     rect.width /= 2;

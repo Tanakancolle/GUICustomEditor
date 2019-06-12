@@ -11,7 +11,7 @@ namespace AutoCustomEditor
         PropertyField,
         Space,
         IntentLevel,
-        CodeTextArea,
+        CodeField,
         Slider,
         TextureArea,
         HorizontalStart,
@@ -44,9 +44,9 @@ namespace AutoCustomEditor
                     drawer = new SpaceItemDrawer(parameter, target);
                     break;
                 case ItemType.IntentLevel:
-                    drawer = new IntentLevelDrawer(parameter, target);
+                    drawer = new IntentLevelItemDrawer(parameter, target);
                     break;
-                case ItemType.CodeTextArea:
+                case ItemType.CodeField:
                     drawer = new CodeFieldItemDrawer(parameter, target);
                     break;
                 case ItemType.Slider:

@@ -2,11 +2,11 @@ using UnityEditor;
 
 namespace AutoCustomEditor
 {
-    public class IntentLevelDrawer : ItemDrawerBase
+    public class IntentLevelItemDrawer : ItemDrawerBase
     {
         private int _intentChangeLevel;
 
-        public IntentLevelDrawer(ItemParameter parameter, SerializedObject target) : base(parameter, target)
+        public IntentLevelItemDrawer(ItemParameter parameter, SerializedObject target) : base(parameter, target)
         {
             _intentChangeLevel = GetValueFromIndex(parameter.Ints, 0);
         }

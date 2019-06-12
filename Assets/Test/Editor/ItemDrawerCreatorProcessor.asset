@@ -9,12 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69d1d1c8608a45c8aab3dd7301bcf96f, type: 3}
-  m_Name: EnemyDataParameter
+  m_Script: {fileID: 11500000, guid: e5aa7e9b96ab74fd09d4af46614ca2ea, type: 3}
+  m_Name: ItemDrawerCreatorProcessor
   m_EditorClassIdentifier: 
-  Items:
-  - ItemType: 9
-    PropertyName: 
-    DrawName: 
-    Ints: 
-    Floats: []
+  _findPath: Assets/AutoCustomEditor/Editor/Item/ItemDrawer
+  _fileNameSuffix: ItemDrawer
