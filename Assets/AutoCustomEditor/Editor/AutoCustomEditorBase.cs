@@ -62,28 +62,6 @@ namespace AutoCustomEditor
 
         public override void OnInspectorGUI()
         {
-            var state = new AutoCustomEditorState();
-            serializedObject.Update();
-            foreach (var drawer in _drwaerList)
-            {
-                drawer.Draw(state);
-            }
-            serializedObject.ApplyModifiedProperties();
-
-            EditorGUI.indentLevel -= state.IntentLevel;
-            for (int i = state.HorizontalLevel; i > 0; --i)
-            {
-                EditorGUILayout.EndHorizontal();
-            }
-            for (int i = state.VerticalLevel; i > 0; --i)
-            {
-                EditorGUILayout.EndVertical();
-            }
-
-
-            GUILayout.Space(EditorGUIUtility.singleLineHeight);
-            Utility.DrawSeparator();
-
             if (_parameter == null)
             {
                 if (GUILayout.Button("Create Parameter"))
@@ -104,6 +82,27 @@ namespace AutoCustomEditor
 
                 return;
             }
+
+            var state = new AutoCustomEditorState();
+            serializedObject.Update();
+            foreach (var drawer in _drwaerList)
+            {
+                drawer.Draw(state);
+            }
+            serializedObject.ApplyModifiedProperties();
+
+            EditorGUI.indentLevel -= state.IntentLevel;
+            for (int i = state.HorizontalLevel; i > 0; --i)
+            {
+                EditorGUILayout.EndHorizontal();
+            }
+            for (int i = state.VerticalLevel; i > 0; --i)
+            {
+                EditorGUILayout.EndVertical();
+            }
+
+            GUILayout.Space(EditorGUIUtility.singleLineHeight);
+            Utility.DrawSeparator();
 
             _isFoldout = EditorGUILayout.Foldout(_isFoldout, "Custom Editor Parameter");
 
