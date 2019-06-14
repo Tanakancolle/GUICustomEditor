@@ -21,7 +21,6 @@ namespace AutoCustomEditor
         private SerializedProperty[] _properties;
         private ReorderableList _itemList;
         private string[] _targetPropertyNames;
-        private int[] _selectPropertyIndexs;
 
         private void OnEnable()
         {

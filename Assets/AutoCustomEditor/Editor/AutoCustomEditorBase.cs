@@ -12,9 +12,19 @@ namespace AutoCustomEditor
         protected AutoCustomParameter _parameter;
         protected AutoCustomParameterEditor _parameterEditor;
         protected bool _isFoldout;
+        protected string[] _propertyNames;
 
         protected virtual void OnEnable()
         {
+            var property = new SerializedObject(target).GetIterator();
+            var propertyNameList = new List<string>();
+            while (property.NextVisible(true))
+            {
+                propertyNameList.Add(property.name);
+            }
+
+            _propertyNames = propertyNameList.ToArray();
+
             Refresh();
         }
 
@@ -30,21 +40,21 @@ namespace AutoCustomEditor
                 }
 
                 _parameterEditor = Editor.CreateEditor(_parameter) as AutoCustomParameterEditor;
-
-                var proprtyNameList = new List<string>();
-                var property = new SerializedObject(target).GetIterator();
-
-                while (property.NextVisible(true))
-                {
-                    proprtyNameList.Add(property.name);
-                }
-
-                _parameterEditor.SetTargetNames(proprtyNameList.ToArray());
+                _parameterEditor.SetTargetNames(_propertyNames);
             }
 
-            if (_parameter.Items == null)
+            if (_parameter.Items == null || _parameter.Items.Length == 0)
             {
-                return;
+                _parameter.Items = new ItemParameter[_propertyNames.Length];
+                for (var i = 0; i < _propertyNames.Length; ++i)
+                {
+                    var item = new ItemParameter();
+                    item.PropertyName = item.DrawName = _propertyNames[i];
+                    item.ItemType = ItemType.PropertyField;
+                    _parameter.Items[i] = item;
+                }
+
+                EditorUtility.SetDirty(_parameter);
             }
 
             _drwaerList.Clear();
@@ -64,22 +74,7 @@ namespace AutoCustomEditor
         {
             if (_parameter == null)
             {
-                if (GUILayout.Button("Create Parameter"))
-                {
-                    var path = AssetDatabase.GetAssetPath(target);
-                    path = Path.GetDirectoryName(path);
-
-                    if (path.Contains("/Editor") == false)
-                    {
-                        path = Path.Combine(path, "Editor");
-                    }
-
-                    var instance = CreateInstance<AutoCustomParameter>();
-                    AssetDatabase.CreateAsset(instance, Path.Combine(path, GetParameterName()) + ".asset");
-                    AssetDatabase.Refresh();
-                    Refresh();
-                }
-
+                DrawParameterCreateButton();
                 return;
             }
 
@@ -143,6 +138,26 @@ namespace AutoCustomEditor
         private string GetParameterName()
         {
             return target.GetType().Name + "Parameter";
+        }
+
+        private void DrawParameterCreateButton()
+        {
+            if (GUILayout.Button("Create Parameter"))
+            {
+                var path = AssetDatabase.GetAssetPath(target);
+                path = Path.GetDirectoryName(path);
+
+                if (path.Contains("/Editor") == false)
+                {
+                    path = Path.Combine(path, "Editor");
+                }
+
+                var instance = CreateInstance<AutoCustomParameter>();
+
+                AssetDatabase.CreateAsset(instance, Path.Combine(path, GetParameterName()) + ".asset");
+                AssetDatabase.Refresh();
+                Refresh();
+            }
         }
     }
 }

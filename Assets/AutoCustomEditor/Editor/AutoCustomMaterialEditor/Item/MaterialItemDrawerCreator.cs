@@ -20,7 +20,7 @@ namespace AutoCustomEditor
                 case ItemType.None:
                     break;
                 case ItemType.Label:
-
+                    drawer = new LabelMaterialItemDrawer(parameter, materialEditor, properties);
                     break;
                 case ItemType.PropertyField:
                     break;
