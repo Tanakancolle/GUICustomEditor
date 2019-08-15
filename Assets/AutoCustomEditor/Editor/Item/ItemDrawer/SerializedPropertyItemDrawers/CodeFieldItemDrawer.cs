@@ -31,7 +31,7 @@ namespace AutoCustomEditor
                 EditorGUILayout.LabelField(_drawNameContent);
             }
 
-            _property.stringValue = SyntaxHighlightEditor.SyntaxHighlightUtility.DrawCSharpCode(ref _scrollPosition, _property.stringValue, _fontSize, _height);
+            _property.stringValue = SyntaxHighlightEditor.SyntaxHighlightUtility.DrawCSharpCode(ref _scrollPosition, _property.stringValue, _fontSize, _height, _height);
         }
     }
 }
