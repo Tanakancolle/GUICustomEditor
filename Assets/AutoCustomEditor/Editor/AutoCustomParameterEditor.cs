@@ -22,6 +22,8 @@ namespace AutoCustomEditor
         private ReorderableList _itemList;
         private string[] _targetPropertyNames;
 
+        public ReorderableList.ReorderCallbackDelegate OnReorderCallback { get; set; }
+
         private void OnEnable()
         {
             var propertyNames = Enum.GetNames(typeof(Property));
@@ -35,6 +37,8 @@ namespace AutoCustomEditor
             {
                 elementHeightCallback = GetItemHeight,
                 drawElementCallback = DrawItem,
+                onReorderCallback = (list) => OnReorderCallback?.Invoke(list),
+                headerHeight = 0f,
             };
         }
 

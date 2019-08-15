@@ -40,7 +40,18 @@ namespace AutoCustomEditor
                 }
 
                 _parameterEditor = Editor.CreateEditor(_parameter) as AutoCustomParameterEditor;
-                _parameterEditor.SetTargetNames(_propertyNames);
+                if (_parameterEditor != null)
+                {
+                    _parameterEditor.SetTargetNames(_propertyNames);
+                    _parameterEditor.OnReorderCallback = (list) =>
+                    {
+                        Refresh();
+                    };
+                }
+                else
+                {
+                    Debug.LogError("AutoCustomParameterEditor を継承したカスタムエディタが存在しません");
+                }
             }
 
             if (_parameter.Items == null || _parameter.Items.Length == 0)
