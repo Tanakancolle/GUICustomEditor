@@ -11,7 +11,7 @@ namespace AutoCustomEditor
             _intentChangeLevel = GetValueFromIndex(parameter.Ints, 0);
         }
 
-        public override void Draw(AutoCustomEditorState state)
+        public override void Draw(GUICustomEditorState state)
         {
             EditorGUI.indentLevel += _intentChangeLevel;
             state.IntentLevel += _intentChangeLevel;

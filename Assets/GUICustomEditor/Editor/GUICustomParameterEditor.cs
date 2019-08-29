@@ -6,8 +6,8 @@ using UnityEngine;
 
 namespace AutoCustomEditor
 {
-    [CustomEditor(typeof(AutoCustomParameter))]
-    public class AutoCustomParameterEditor : Editor
+    [CustomEditor(typeof(GUICustomParameter))]
+    public class GUICustomParameterEditor : Editor
     {
         /// <summary>
         /// AutoCustomParameterのプロパティタイプ

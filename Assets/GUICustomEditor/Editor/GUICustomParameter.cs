@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace AutoCustomEditor
 {
-    public class AutoCustomParameter : ScriptableObject
+    public class GUICustomParameter : ScriptableObject
     {
         [SerializeField]
         public ItemParameter[] Items;

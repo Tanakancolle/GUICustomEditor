@@ -10,13 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 56a3a9f3b9043415681fb03d3faa50c2, type: 3}
-  m_Name: AutoCustomEditorSetting
+  m_Name: GUICustomEditorSetting
   m_EditorClassIdentifier: 
   Path: 
   ScriptName: '{<Name>}Editor.cs'
-  Code: "using AutoCustomEditor;\nusing UnityEditor;\n\n[CustomEditor(typeof({<Name>}))]\npublic
-    class {<Name>}Editor : AutoCustomEditorBase\n{\n{<RepeatCount:   \u6587\u5B57
-    \  :Count:arry>}\n{<array.count>}\n}"
+  Code: 'using AutoCustomEditor;
+
+    using UnityEditor;
+
+
+    [CustomEditor(typeof({<Name>}))]
+
+    public class {<Name>}Editor : AutoCustomEditorBase
+
+    {
+
+    }'
+  CodeAreaMinHeight: 100
+  CodeAreaMaxHeight: 100
   Overwrite: 0
   Chain: []
   DuplicatePrefab: {fileID: 0}
@@ -25,3 +36,5 @@ MonoBehaviour:
   PrefabName: 
   AssetsMenuItem: 0
   Description: 
+  IsFoldouts: 010101
+  ScrollPos: {x: 0, y: 11}

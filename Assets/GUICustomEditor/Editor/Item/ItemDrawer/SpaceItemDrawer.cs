@@ -13,7 +13,7 @@ namespace AutoCustomEditor
             _space = GetValueFromIndex(parameter.Floats, 0);
         }
 
-        public override void Draw(AutoCustomEditorState state)
+        public override void Draw(GUICustomEditorState state)
         {
             GUILayout.Space(_space);
         }

@@ -1,6 +1,6 @@
 namespace AutoCustomEditor
 {
-    public class AutoCustomEditorState
+    public class GUICustomEditorState
     {
         public int IntentLevel { get; set; }
         public int HorizontalLevel { get; set; }

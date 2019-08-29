@@ -19,7 +19,7 @@ namespace AutoCustomEditor
             _height = GetValueFromIndex(parameter.Floats, 0);
         }
 
-        public override void Draw(AutoCustomEditorState state)
+        public override void Draw(GUICustomEditorState state)
         {
             if (_property == null)
             {

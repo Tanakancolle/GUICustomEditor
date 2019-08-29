@@ -2,6 +2,6 @@
 using UnityEditor;
 
 [CustomEditor(typeof(TestScriptableObject))]
-public class TemplateTestEditor : AutoCustomEditorBase
+public class TemplateTestEditor : GUICustomEditorBase
 {
 }

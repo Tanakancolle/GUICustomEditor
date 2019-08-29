@@ -8,7 +8,7 @@ namespace AutoCustomEditor
         {
         }
 
-        public override void Draw(AutoCustomEditorState state)
+        public override void Draw(GUICustomEditorState state)
         {
             if (state.VerticalLevel <= 0)
             {

@@ -5,12 +5,12 @@ using UnityEngine;
 
 namespace AutoCustomEditor
 {
-    public abstract class AutoCustomEditorBase : Editor
+    public abstract class GUICustomEditorBase : Editor
     {
         protected List<ItemDrawerBase> _drwaerList = new List<ItemDrawerBase>();
 
-        protected AutoCustomParameter _parameter;
-        protected AutoCustomParameterEditor _parameterEditor;
+        protected GUICustomParameter _parameter;
+        protected GUICustomParameterEditor _parameterEditor;
         protected bool _isFoldout;
         protected string[] _propertyNames;
 
@@ -39,7 +39,7 @@ namespace AutoCustomEditor
                     return;
                 }
 
-                _parameterEditor = Editor.CreateEditor(_parameter) as AutoCustomParameterEditor;
+                _parameterEditor = Editor.CreateEditor(_parameter) as GUICustomParameterEditor;
                 if (_parameterEditor != null)
                 {
                     _parameterEditor.SetTargetNames(_propertyNames);
@@ -89,7 +89,7 @@ namespace AutoCustomEditor
                 return;
             }
 
-            var state = new AutoCustomEditorState();
+            var state = new GUICustomEditorState();
             serializedObject.Update();
             foreach (var drawer in _drwaerList)
             {
@@ -132,11 +132,11 @@ namespace AutoCustomEditor
             }
         }
 
-        private AutoCustomParameter GetParameter(string assetName)
+        private GUICustomParameter GetParameter(string assetName)
         {
             foreach (var guid in AssetDatabase.FindAssets("t:ScriptableObject " + assetName))
             {
-                var parameter = AssetDatabase.LoadAssetAtPath<AutoCustomParameter>(AssetDatabase.GUIDToAssetPath(guid));
+                var parameter = AssetDatabase.LoadAssetAtPath<GUICustomParameter>(AssetDatabase.GUIDToAssetPath(guid));
                 if (parameter != null)
                 {
                     return parameter;
@@ -163,7 +163,7 @@ namespace AutoCustomEditor
                     path = Path.Combine(path, "Editor");
                 }
 
-                var instance = CreateInstance<AutoCustomParameter>();
+                var instance = CreateInstance<GUICustomParameter>();
 
                 AssetDatabase.CreateAsset(instance, Path.Combine(path, GetParameterName()) + ".asset");
                 AssetDatabase.Refresh();
