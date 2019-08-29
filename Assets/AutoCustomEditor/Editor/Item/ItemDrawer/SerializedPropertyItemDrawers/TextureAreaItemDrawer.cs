@@ -21,7 +21,8 @@ namespace AutoCustomEditor
                 return;
             }
 
-            EditorGUILayout.ObjectField (_property, typeof(Texture2D), GUIContent.none, GUILayout.Width(_width), GUILayout.Height(_height));
+
+            EditorGUILayout.ObjectField (_property, typeof(Texture), GUIContent.none, GUILayout.Width(_width + state.IntentLevel * 15f), GUILayout.Height(_height));
         }
     }
 }
